@@ -1,5 +1,7 @@
 package view;
 
+import domain.Participants;
+
 import java.util.Scanner;
 
 public class InputView {
@@ -9,8 +11,13 @@ public class InputView {
 
     private InputView() {}
 
-    public static String inputParticipant() {
+    public static Participants inputParticipant() {
         System.out.println(INPUT_PARTICIPANTS_MESSAGE);
-        return SCANNER.nextLine();
+        return Participants.from(SCANNER.nextLine());
+    }
+
+    public static int inputHeight() {
+        System.out.println(INPUT_HEIGHT_MESSAGE);
+        return SCANNER.nextInt();
     }
 }
