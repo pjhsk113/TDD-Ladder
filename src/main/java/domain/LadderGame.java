@@ -5,7 +5,10 @@ import view.OutputView;
 
 public class LadderGame {
     public void play() {
-        Participants participants = Participants.from(InputView.inputParticipant());
-        OutputView.printParticipant(participants);
+        Participants participants = InputView.inputParticipant();
+        int height = InputView.inputHeight();
+
+        Ladder ladder = Ladder.of(participants, height, new LadderLineCreateStrategy());
+        OutputView.printLadder(participants, ladder);
     }
 }
