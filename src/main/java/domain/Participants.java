@@ -40,4 +40,8 @@ public class Participants {
                 .map(participant -> String.format("%6s", participant.toString()))
                 .collect(joining(""));
     }
+
+    public int getSize() {
+        return participants.size();
+    }
 }
