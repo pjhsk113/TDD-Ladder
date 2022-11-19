@@ -6,10 +6,10 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Line {
-    private List<Point> lines;
+    private List<Point> line;
 
-    private Line(List<Point> lines) {
-        this.lines = lines;
+    private Line(List<Point> line) {
+        this.line = line;
     }
 
     public static Line of(int countOfPerson, LineCreateStrategy strategy) {
@@ -36,6 +36,6 @@ public class Line {
     }
 
     public Stream<Point> stream() {
-        return lines.stream();
+        return line.stream();
     }
 }
