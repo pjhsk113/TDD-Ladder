@@ -1,4 +1,4 @@
-package domain;
+package step1.domain;
 
 public class Participant {
     private static final String OUT_OF_RANGE_NAME_LENGTH = "이름은 5글자를 초과할 수 없습니다.";

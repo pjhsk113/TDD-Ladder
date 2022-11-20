@@ -1,10 +1,9 @@
-package view;
+package step1.view;
 
-import domain.Ladder;
-import domain.Line;
-import domain.Participants;
+import step1.domain.Ladder;
+import step1.domain.Line;
+import step1.domain.Participants;
 
-import java.util.StringJoiner;
 import java.util.stream.Collectors;
 
 public class OutputView {

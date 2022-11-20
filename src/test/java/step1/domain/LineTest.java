@@ -1,9 +1,11 @@
-package domain;
+package step1.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import step1.domain.Line;
+import step1.domain.LineCreateStrategy;
 
 import java.util.stream.Stream;
 

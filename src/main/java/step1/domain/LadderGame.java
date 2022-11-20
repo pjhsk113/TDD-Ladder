@@ -1,7 +1,7 @@
-package domain;
+package step1.domain;
 
-import view.InputView;
-import view.OutputView;
+import step1.view.InputView;
+import step1.view.OutputView;
 
 public class LadderGame {
     public void play() {

@@ -1,10 +1,12 @@
-package domain;
+package step1.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import step1.domain.Participant;
+import step1.domain.Participants;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -12,7 +14,6 @@ import java.util.stream.Stream;
 import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
 
 class ParticipantsTest {
     @DisplayName("참가자 수가 2명 미만인 경우 IllegalArgumentException이 발생한다.")

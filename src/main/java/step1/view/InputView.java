@@ -1,6 +1,6 @@
-package view;
+package step1.view;
 
-import domain.Participants;
+import step1.domain.Participants;
 
 import java.util.Scanner;
 
