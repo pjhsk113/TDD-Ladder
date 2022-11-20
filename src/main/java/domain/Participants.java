@@ -3,6 +3,7 @@ package domain;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.joining;
 
@@ -43,5 +44,9 @@ public class Participants {
 
     public int getSize() {
         return participants.size();
+    }
+
+    public Stream<Participant> stream() {
+        return participants.stream();
     }
 }
