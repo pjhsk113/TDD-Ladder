@@ -1,6 +1,7 @@
 package step2.view;
 
 import step2.domain.Participants;
+import step2.domain.Results;
 
 import java.util.Scanner;
 
@@ -17,9 +18,9 @@ public class InputView {
         return Participants.from(SCANNER.nextLine());
     }
 
-    public static String inputResult() {
+    public static Results inputResult(int limit) {
         System.out.println(INPUT_RESULT_MESSAGE);
-        return SCANNER.nextLine();
+        return Results.from(SCANNER.nextLine(), limit);
     }
 
     public static int inputHeight() {
