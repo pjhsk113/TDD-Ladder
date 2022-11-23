@@ -3,6 +3,7 @@ package step2.view;
 import step2.domain.Ladder;
 import step2.domain.Line;
 import step2.domain.Participants;
+import step2.domain.Results;
 
 import java.util.stream.Collectors;
 
@@ -13,16 +14,17 @@ public class OutputView {
 
     private OutputView() { }
 
-    public static void printLadder(Participants participants, Ladder ladder) {
-        System.out.println("실행 결과");
+    public static void printLadder(Participants participants, Ladder ladder, Results results) {
+        System.out.println("사다리 결과");
         System.out.println(participants.getNames());
         System.out.println(ladderCreationResult(ladder));
+        System.out.println(results.getResults());
     }
+
     private static String ladderCreationResult(Ladder ladder) {
         return ladder.stream()
                 .map(line -> lineCreationResult(line))
                 .collect(Collectors.joining(NEW_LINE));
-
     }
 
     private static String lineCreationResult(Line line) {
