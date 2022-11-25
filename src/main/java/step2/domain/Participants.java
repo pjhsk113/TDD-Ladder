@@ -2,6 +2,7 @@ package step2.domain;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -25,8 +26,9 @@ public class Participants {
     }
 
     private static List<Participant> convert(String names) {
+        AtomicInteger index = new AtomicInteger();
         return Arrays.stream(names.split(COMMA))
-                .map(Participant::from)
+                .map(name -> Participant.from(index.getAndIncrement(), name))
                 .collect(Collectors.toList());
     }
 
@@ -48,5 +50,12 @@ public class Participants {
 
     public Stream<Participant> stream() {
         return participants.stream();
+    }
+
+    public Participant findParticipant(String name) {
+        return participants.stream()
+                .filter(participant -> participant.isTarget(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("입력하신 참가자가 존재하지 않습니다"));
     }
 }
