@@ -1,14 +1,16 @@
 package step2.domain;
 
 public class Result {
+    private final int index;
     private final String value;
 
-    private Result(String value) {
+    private Result(int index, String value) {
+        this.index = index;
         this.value = value;
     }
 
-    public static Result from(String value) {
-        return new Result(value);
+    public static Result of(int index, String value) {
+        return new Result(index, value);
     }
 
     @Override
