@@ -1,9 +1,9 @@
 package step2;
 
-import step2.domain.LadderGame;
+import step2.domain.LadderGameExecutor;
 
 public class Application {
     public static void main(String[] args) {
-        new LadderGame().play();
+        new LadderGameExecutor().play();
     }
 }

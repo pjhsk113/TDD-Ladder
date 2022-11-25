@@ -3,7 +3,7 @@ package step2.domain;
 import step2.view.InputView;
 import step2.view.OutputView;
 
-public class LadderGame {
+public class LadderGameExecutor {
     public void play() {
         Participants participants = InputView.inputParticipant();
         Results expectResult = InputView.inputResult(participants.getSize());
@@ -12,6 +12,7 @@ public class LadderGame {
         Ladder ladder = Ladder.of(participants, height, new LadderLineCreateStrategy());
         OutputView.printLadder(participants, ladder, expectResult);
 
-        String target = InputView.inputLadderGameResult();
+        Participant target = InputView.inputCheckGameResult(participants);
+        LadderCalculator.execute(ladder, target, expectResult);
     }
 }
