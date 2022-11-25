@@ -6,14 +6,16 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Line {
+    private int index;
     private List<Point> line;
 
-    private Line(List<Point> line) {
+    private Line(int index, List<Point> line) {
+        this.index = index;
         this.line = line;
     }
 
-    public static Line of(int countOfPerson, LineCreateStrategy strategy) {
-        return new Line(toPoint(countOfPerson, strategy));
+    public static Line of(int index, int countOfPerson, LineCreateStrategy strategy) {
+        return new Line(index, toPoint(countOfPerson, strategy));
     }
 
     private static List<Point> toPoint(int countOfPerson, LineCreateStrategy strategy) {
