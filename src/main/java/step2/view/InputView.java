@@ -1,5 +1,6 @@
 package step2.view;
 
+import step2.domain.Participant;
 import step2.domain.Participants;
 import step2.domain.Results;
 
@@ -29,8 +30,8 @@ public class InputView {
         return SCANNER.nextInt();
     }
 
-    public static String inputLadderGameResult() {
+    public static Participant inputCheckGameResult(Participants participants) {
         System.out.println(GAME_RESULT_MESSAGE);
-        return SCANNER.nextLine();
+        return participants.findParticipant(SCANNER.nextLine());
     }
 }
