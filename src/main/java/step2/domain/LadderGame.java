@@ -11,5 +11,7 @@ public class LadderGame {
 
         Ladder ladder = Ladder.of(participants, height, new LadderLineCreateStrategy());
         OutputView.printLadder(participants, ladder, expectResult);
+
+        String target = InputView.inputLadderGameResult();
     }
 }

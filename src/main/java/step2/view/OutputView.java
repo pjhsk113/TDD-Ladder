@@ -1,9 +1,6 @@
 package step2.view;
 
-import step2.domain.Ladder;
-import step2.domain.Line;
-import step2.domain.Participants;
-import step2.domain.Results;
+import step2.domain.*;
 
 import java.util.stream.Collectors;
 
@@ -31,5 +28,10 @@ public class OutputView {
         return line.stream()
                 .map(point -> point.isDivergingPoint() ? DIVERGING_POINT_LINE : LINE)
                 .collect(Collectors.joining(""));
+    }
+
+    public static String printGameResult(String name) {
+        System.out.println("실행 결과");
+        return "";
     }
 }
