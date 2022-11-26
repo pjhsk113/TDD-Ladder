@@ -1,9 +1,10 @@
 package step2.domain;
 
 public class LadderCalculator {
-    public static Result execute(Ladder ladder, Participants participants, Results results) {
-        int index = 0;
+    private LadderCalculator() { }
 
-        // TODO 사다리 계산 로직 작성.... 어렵
+    public static Result execute(Ladder ladder, Participant participant, Results results) {
+        int resultIndex = ladder.execute(participant);
+        return results.findResult(resultIndex);
     }
 }
