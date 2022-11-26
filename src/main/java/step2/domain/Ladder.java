@@ -35,4 +35,10 @@ public class Ladder {
 
         return targetIndex;
     }
+
+    public List<Integer> executeAll(Participants participants) {
+        return participants.stream()
+                .map(participant -> execute(participant))
+                .collect(Collectors.toUnmodifiableList());
+    }
 }
