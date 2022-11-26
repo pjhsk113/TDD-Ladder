@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.joining;
@@ -41,13 +42,32 @@ public class Results {
                 .collect(joining(""));
     }
 
-    public Result findResult(int resultIndex) {
+    public String resultToString(Participants participants, List<Integer> resultsIndexes) {
+        if (isSingle(resultsIndexes)) {
+            return findResult(resultsIndexes.get(0)).toString();
+        }
+
+        return resultFormatting(participants, resultsIndexes);
+    }
+
+    private String resultFormatting(Participants participants, List<Integer> resultsIndexes) {
+        return IntStream.range(0, resultsIndexes.size())
+                .mapToObj(i -> String.format("%s : %s",
+                        participants.get(i),
+                        findResult(resultsIndexes.get(i)).toString()))
+                .collect(joining(System.lineSeparator()));
+    }
+
+    private Result findResult(int resultIndex) {
         return results.stream()
                 .filter(result -> result.isSameIndex(resultIndex))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("매칭된 결과가 없습니다."));
     }
 
+    private boolean isSingle(List<Integer> resultsIndexes) {
+        return resultsIndexes.size() == 1;
+    }
     public Stream<Result> stream() {
         return results.stream();
     }

@@ -58,4 +58,8 @@ public class Participants {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("입력하신 참가자가 존재하지 않습니다"));
     }
+
+    public Participant get(int index) {
+        return participants.get(index);
+    }
 }
