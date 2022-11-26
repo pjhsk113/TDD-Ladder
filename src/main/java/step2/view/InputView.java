@@ -30,8 +30,8 @@ public class InputView {
         return SCANNER.nextInt();
     }
 
-    public static Participant inputCheckGameResult(Participants participants) {
+    public static String inputCheckGameResult() {
         System.out.println(GAME_RESULT_MESSAGE);
-        return participants.findParticipant(SCANNER.next());
+        return SCANNER.next();
     }
 }

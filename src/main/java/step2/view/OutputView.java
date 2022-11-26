@@ -2,6 +2,7 @@ package step2.view;
 
 import step2.domain.*;
 
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class OutputView {
@@ -30,8 +31,8 @@ public class OutputView {
                 .collect(Collectors.joining(""));
     }
 
-    public static void printGameResult(Result executeResult) {
+    public static void printGameResult(Participants participants, List<Integer> resultsIndexes, Results results) {
         System.out.println("실행 결과");
-        System.out.println(executeResult.toString());
+        System.out.println(results.resultToString(participants, resultsIndexes));
     }
 }
