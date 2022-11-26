@@ -34,6 +34,10 @@ public class Participant {
         return name.equals(target);
     }
 
+    public int getParticipationNumber() {
+        return participationNumber;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
