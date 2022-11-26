@@ -18,11 +18,21 @@ public class Ladder {
 
     private static List<Line> toLine(int countOfPerson, int height, LineCreateStrategy strategy) {
         return IntStream.range(0, height)
-                .mapToObj(index -> Line.of(index, countOfPerson, strategy))
+                .mapToObj(index -> Line.of(countOfPerson, strategy))
                 .collect(Collectors.toList());
     }
 
     public Stream<Line> stream() {
         return ladder.stream();
+    }
+
+    public int execute(Participant participant) {
+        int targetIndex = participant.getParticipationNumber();
+
+        for (int i = 0; i < ladder.size(); i++) {
+            targetIndex = ladder.get(i).move(targetIndex);
+        }
+
+        return targetIndex;
     }
 }
