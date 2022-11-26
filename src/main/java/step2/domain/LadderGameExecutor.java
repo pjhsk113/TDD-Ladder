@@ -3,6 +3,8 @@ package step2.domain;
 import step2.view.InputView;
 import step2.view.OutputView;
 
+import java.util.List;
+
 public class LadderGameExecutor {
     public void play() {
         Participants participants = InputView.inputParticipant();
@@ -12,8 +14,11 @@ public class LadderGameExecutor {
         Ladder ladder = Ladder.of(participants, height, new LadderLineCreateStrategy());
         OutputView.printLadder(participants, ladder, expectResult);
 
-        Participant target = InputView.inputCheckGameResult(participants);
-        Result executeResult = LadderCalculator.execute(ladder, target, expectResult);
-        OutputView.printGameResult(executeResult);
+        String target = "";
+        while(!target.equalsIgnoreCase("all")) {
+            target = InputView.inputCheckGameResult();
+            List<Integer> resultIndexes = LadderCalculator.execute(ladder, participants, target);
+            OutputView.printGameResult(participants, resultIndexes, expectResult);
+        }
     }
 }
