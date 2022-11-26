@@ -41,6 +41,13 @@ public class Results {
                 .collect(joining(""));
     }
 
+    public Result findResult(int resultIndex) {
+        return results.stream()
+                .filter(result -> result.isSameIndex(resultIndex))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("매칭된 결과가 없습니다."));
+    }
+
     public Stream<Result> stream() {
         return results.stream();
     }

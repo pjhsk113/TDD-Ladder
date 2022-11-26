@@ -13,6 +13,10 @@ public class Result {
         return new Result(index, value);
     }
 
+    public boolean isSameIndex(int targetIndex) {
+        return index == targetIndex;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
