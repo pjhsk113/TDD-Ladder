@@ -13,6 +13,7 @@ public class LadderGameExecutor {
         OutputView.printLadder(participants, ladder, expectResult);
 
         Participant target = InputView.inputCheckGameResult(participants);
-        LadderCalculator.execute(ladder, target, expectResult);
+        Result executeResult = LadderCalculator.execute(ladder, target, expectResult);
+        OutputView.printGameResult(executeResult);
     }
 }
