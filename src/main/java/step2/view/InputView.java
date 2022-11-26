@@ -32,6 +32,6 @@ public class InputView {
 
     public static Participant inputCheckGameResult(Participants participants) {
         System.out.println(GAME_RESULT_MESSAGE);
-        return participants.findParticipant(SCANNER.nextLine());
+        return participants.findParticipant(SCANNER.next());
     }
 }

@@ -30,8 +30,8 @@ public class OutputView {
                 .collect(Collectors.joining(""));
     }
 
-    public static String printGameResult(String name) {
+    public static void printGameResult(Result executeResult) {
         System.out.println("실행 결과");
-        return "";
+        System.out.println(executeResult.toString());
     }
 }
