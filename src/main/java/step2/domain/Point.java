@@ -21,9 +21,9 @@ public class Point {
         return index;
     }
 
-    public int isRightDiverge(Point point) {
-        if (point.isDivergingPoint()) {
-            return point.getIndex();
+    public int isRightDiverge(Point nextPoint) {
+        if (nextPoint.isDivergingPoint()) {
+            return nextPoint.getIndex();
         }
 
         return index;
