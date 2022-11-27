@@ -38,38 +38,24 @@ public class Results {
             throw new IllegalArgumentException(INPUT_EXCEEDED_EXCEPTION_MESSAGE);
         }
     }
+
     public String getResults() {
         return results.stream()
                 .map(result -> String.format("%6s", result.toString()))
                 .collect(joining(""));
     }
 
-    public String resultToString(Participants participants, List<Integer> resultsIndexes) {
-        if (isSingle(resultsIndexes)) {
-            return findResult(resultsIndexes.get(0)).toString();
-        }
-
-        return resultFormatting(participants, resultsIndexes);
-    }
-
-    private String resultFormatting(Participants participants, List<Integer> resultsIndexes) {
-        return IntStream.range(0, resultsIndexes.size())
-                .mapToObj(i -> String.format("%s : %s",
-                        participants.get(i),
-                        findResult(resultsIndexes.get(i)).toString()))
-                .collect(joining(System.lineSeparator()));
-    }
-
-    private Result findResult(int resultIndex) {
+    public Result findResult(int resultIndex) {
         return results.stream()
                 .filter(result -> result.isSameIndex(resultIndex))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(NOT_MATCHED_RESULT_EXCEPTION_MESSAGE));
     }
 
-    private boolean isSingle(List<Integer> resultsIndexes) {
+    public boolean isSingle(List<Integer> resultsIndexes) {
         return resultsIndexes.size() == 1;
     }
+
     public Stream<Result> stream() {
         return results.stream();
     }
