@@ -1,6 +1,7 @@
 package step2.domain;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -77,6 +78,68 @@ class LadderTest {
                                 Arrays.asList(false, false, false, false),
                                 Arrays.asList(false, false, false, false)
                         )
+                )
+        );
+    }
+
+    @Nested
+    @DisplayName("사다리 게임 실행 테스트")
+    class LadderExecutorTest {
+        @DisplayName("사다리 게임 단일 실행 테스트")
+        @ParameterizedTest
+        @MethodSource("step2.domain.LadderTest#ladderExecuteSingleResultProvider")
+        void ladderSingleExecuteTest(Ladder ladder, Participant participant, int expectedIndex) {
+            assertThat(ladder.execute(participant)).isEqualTo(expectedIndex);
+        }
+
+        @DisplayName("사다리 게임 전체 실행 테스트")
+        @ParameterizedTest
+        @MethodSource("step2.domain.LadderTest#ladderExecuteAllResultProvider")
+        void ladderAllExecuteTest(Ladder ladder, Participants participants, List<Integer> expectedIndexes) {
+            assertThat(ladder.executeAll(participants)).isEqualTo(expectedIndexes);
+        }
+    }
+
+    private static Stream<Arguments> ladderExecuteSingleResultProvider() {
+        LineCreateStrategy toggleStrategy = prev -> !prev;
+
+        return Stream.of(
+                Arguments.of(
+                        Ladder.of(Participants.from("aa,bb,cc"), 3, toggleStrategy),
+                        Participant.of(1, "bb"),
+                        0
+                ),
+                Arguments.of(
+                        Ladder.of(Participants.from("aa,bb"), 4, toggleStrategy),
+                        Participant.of(0, "aa"),
+                        0
+                ),
+                Arguments.of(
+                        Ladder.of(Participants.from("aa,bb,cc,dd"), 5, toggleStrategy),
+                        Participant.of(2, "cc"),
+                        3
+                )
+        );
+    }
+
+    private static Stream<Arguments> ladderExecuteAllResultProvider() {
+        LineCreateStrategy toggleStrategy = prev -> !prev;
+
+        return Stream.of(
+                Arguments.of(
+                        Ladder.of(Participants.from("aa,bb,cc"), 3, toggleStrategy),
+                        Participants.from("aa,bb,cc"),
+                        Arrays.asList(1,0,2)
+                ),
+                Arguments.of(
+                        Ladder.of(Participants.from("aa,bb"), 4, toggleStrategy),
+                        Participants.from("aa,bb"),
+                        Arrays.asList(0,1)
+                ),
+                Arguments.of(
+                        Ladder.of(Participants.from("aa,bb,cc,dd"), 5, toggleStrategy),
+                        Participants.from("aa,bb,cc,dd"),
+                        Arrays.asList(1,0,3,2)
                 )
         );
     }
