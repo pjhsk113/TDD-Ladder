@@ -10,6 +10,8 @@ import java.util.stream.Stream;
 import static java.util.stream.Collectors.joining;
 
 public class Results {
+    private static final String INPUT_EXCEEDED_EXCEPTION_MESSAGE = "결과값은 참여자보다 많을 수 없습니다.";
+    private static final String NOT_MATCHED_RESULT_EXCEPTION_MESSAGE = "매칭된 결과가 없습니다.";
     private static final String COMMA = ",";
 
     private List<Result> results;
@@ -18,7 +20,7 @@ public class Results {
         this.results = results;
     }
 
-    public static Results from(String values, int limit) {
+    public static Results of(String values, int limit) {
         List<Result> results = convert(values);
         validate(results, limit);
         return new Results(results);
@@ -33,7 +35,7 @@ public class Results {
 
     private static void validate(List<Result> results, int limit) {
         if (results.size() > limit) {
-            throw new IllegalArgumentException("결과값은 참여자보다 많을 수 없습니다.");
+            throw new IllegalArgumentException(INPUT_EXCEEDED_EXCEPTION_MESSAGE);
         }
     }
     public String getResults() {
@@ -62,7 +64,7 @@ public class Results {
         return results.stream()
                 .filter(result -> result.isSameIndex(resultIndex))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("매칭된 결과가 없습니다."));
+                .orElseThrow(() -> new IllegalArgumentException(NOT_MATCHED_RESULT_EXCEPTION_MESSAGE));
     }
 
     private boolean isSingle(List<Integer> resultsIndexes) {

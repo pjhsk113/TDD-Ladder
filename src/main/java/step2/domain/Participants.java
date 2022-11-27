@@ -11,6 +11,7 @@ import static java.util.stream.Collectors.joining;
 public class Participants {
     private static final String COMMA = ",";
     private static final String PARTICIPANT_COUNT_EXCEPTION_MESSAGE = "참가자가 2명 이상 필요합니다.";
+    private static final String NOT_EXIST_PARTICIPANT_EXCEPTION_MESSAGE = "입력하신 참가자가 존재하지 않습니다";
 
     private List<Participant> participants;
 
@@ -28,7 +29,7 @@ public class Participants {
     private static List<Participant> convert(String names) {
         AtomicInteger index = new AtomicInteger();
         return Arrays.stream(names.split(COMMA))
-                .map(name -> Participant.from(index.getAndIncrement(), name))
+                .map(name -> Participant.of(index.getAndIncrement(), name))
                 .collect(Collectors.toList());
     }
 
@@ -56,7 +57,7 @@ public class Participants {
         return participants.stream()
                 .filter(participant -> participant.isTarget(name))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("입력하신 참가자가 존재하지 않습니다"));
+                .orElseThrow(() -> new IllegalArgumentException(NOT_EXIST_PARTICIPANT_EXCEPTION_MESSAGE));
     }
 
     public Participant get(int index) {
