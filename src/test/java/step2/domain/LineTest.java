@@ -31,12 +31,33 @@ class LineTest {
 
         return Stream.of(
                 Arguments.of(Line.of(2, toggleStrategy), 1),
+                Arguments.of(Line.of(3, toggleStrategy), 1),
+                Arguments.of(Line.of(4, toggleStrategy), 2),
                 Arguments.of(Line.of(3, alwaysTrueStrategy), 2),
                 Arguments.of(Line.of(4, alwaysTrueStrategy), 3),
                 Arguments.of(Line.of(5, alwaysTrueStrategy), 4),
                 Arguments.of(Line.of(2, alwaysFalseStrategy), 0),
                 Arguments.of(Line.of(3, alwaysFalseStrategy), 0),
                 Arguments.of(Line.of(4, alwaysFalseStrategy), 0)
+        );
+    }
+
+    @DisplayName("사다리 라인 분기점 별 움직임 방향 테스트")
+    @ParameterizedTest
+    @MethodSource("lineMoveProvider")
+    void lineMoveTest(Line line, int targetIndex, long expected) {
+        assertThat(line.move(targetIndex)).isEqualTo(expected);
+    }
+
+    private static Stream<Arguments> lineMoveProvider() {
+        LineCreateStrategy toggleStrategy = prev -> !prev;
+
+        return Stream.of(
+                Arguments.of(Line.of(2, toggleStrategy), 0, 1),
+                Arguments.of(Line.of(2, toggleStrategy), 1, 0),
+                Arguments.of(Line.of(3, toggleStrategy), 1, 0),
+                Arguments.of(Line.of(3, toggleStrategy), 2, 2),
+                Arguments.of(Line.of(4, toggleStrategy), 2, 3)
         );
     }
 }
