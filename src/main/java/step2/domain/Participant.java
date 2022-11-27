@@ -12,7 +12,7 @@ public class Participant {
         this.name = name;
     }
 
-    public static Participant from(int participationNumber, String name) {
+    public static Participant of(int participationNumber, String name) {
         validateNameLength(name);
         validateEmptyName(name);
         return new Participant(participationNumber, name);
