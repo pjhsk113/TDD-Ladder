@@ -3,7 +3,7 @@ package step2.domain;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-import step1.domain.Participant;
+import step2.domain.Participant;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 
@@ -13,7 +13,7 @@ class ParticipantTest {
     @ParameterizedTest
     @ValueSource(strings = {"aaaaaaaa", "bbbbbbb", "cccccc"})
     void participantNameLengthTest(String name) {
-        assertThatThrownBy(() -> Participant.from(name))
+        assertThatThrownBy(() -> Participant.of(0, name))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름은 5글자를 초과할 수 없습니다.");
     }
@@ -22,7 +22,7 @@ class ParticipantTest {
     @ParameterizedTest
     @ValueSource(strings = {"", " "})
     void participantEmptyNameTest(String name) {
-        assertThatThrownBy(() -> Participant.from(name))
+        assertThatThrownBy(() -> Participant.of(0, name))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("이름에 빈 값이 입력되었습니다.");
     }

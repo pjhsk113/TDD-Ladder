@@ -4,10 +4,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import step1.domain.Ladder;
-import step1.domain.LineCreateStrategy;
-import step1.domain.Participants;
-import step1.domain.Point;
+import step2.domain.Ladder;
+import step2.domain.LineCreateStrategy;
+import step2.domain.Participants;
+import step2.domain.Point;
 
 import java.util.Arrays;
 import java.util.List;
