@@ -36,20 +36,29 @@ public class Line {
 
         return points;
     }
-
     public int move(int targetIndex) {
-        int prevIndex = targetIndex - 1;
         int nextIndex = targetIndex + 1;
+        Point point = getPoint(targetIndex);
 
-        if (prevIndex < 0) {
-            return getPoint(targetIndex).isRightDiverge(getPoint(nextIndex));
+        if (isStartingPoint(targetIndex)) {
+            return point.moveStartingIndexDirection(getPoint(nextIndex));
         }
 
-        if (nextIndex > line.size() - 1) {
-            return getPoint(targetIndex).isLeftDiverge();
+        if (isEndPoint(nextIndex)) {
+            return point.moveEndIndexDirection();
         }
 
-        return getPoint(targetIndex).findDirectionIndex(getPoint(nextIndex));
+        return point.moveIndexDirection(getPoint(nextIndex));
+    }
+
+    private boolean isStartingPoint(int targetIndex) {
+        int prevIndex = targetIndex - 1;
+
+        return prevIndex < 0;
+    }
+
+    private boolean isEndPoint(int nextIndex) {
+        return nextIndex > line.size() - 1;
     }
 
     private Point getPoint(int targetIndex) {
