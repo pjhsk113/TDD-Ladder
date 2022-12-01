@@ -17,35 +17,43 @@ public class Point {
         return divergingPoint;
     }
 
-    public int getIndex() {
-        return index;
-    }
-
-    public int isRightDiverge(Point nextPoint) {
+    public int moveStartingIndexDirection(Point nextPoint) {
         if (nextPoint.isDivergingPoint()) {
-            return nextPoint.getIndex();
+            return moveRight();
         }
 
-        return index;
+        return notMove();
     }
 
-    public int isLeftDiverge() {
-        if (divergingPoint) {
-            return index - 1;
+    public int moveEndIndexDirection() {
+        if (this.isDivergingPoint()) {
+            return moveLeft();
         }
 
-        return index;
+        return notMove();
     }
 
-    public int findDirectionIndex(Point next) {
-        if (divergingPoint) {
-            return index - 1;
+    public int moveIndexDirection(Point nextPoint) {
+        if (this.isDivergingPoint()) {
+            return moveLeft();
         }
 
-        if (next.isDivergingPoint()) {
-            return index + 1;
+        if (nextPoint.isDivergingPoint()) {
+            return moveRight();
         }
 
+        return notMove();
+    }
+
+    private int moveLeft() {
+        return index - 1;
+    }
+
+    private int moveRight() {
+        return index + 1;
+    }
+
+    private int notMove() {
         return index;
     }
 }
