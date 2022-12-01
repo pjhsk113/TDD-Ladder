@@ -15,7 +15,7 @@ class PointTest {
     @ParameterizedTest
     @MethodSource("directionProvider")
     void findPointDirectionTest(Point currentPoint, Point nextPoint, int expectedIndex) {
-        assertThat(currentPoint.findDirectionIndex(nextPoint)).isEqualTo(expectedIndex);
+        assertThat(currentPoint.moveIndexDirection(nextPoint)).isEqualTo(expectedIndex);
     }
 
     private static Stream<Arguments> directionProvider() {
@@ -30,7 +30,7 @@ class PointTest {
     @ParameterizedTest
     @MethodSource("firstPointProvider")
     void firstPointDirectionTest(Point currentPoint, Point nextPoint, int expectedIndex) {
-        assertThat(currentPoint.isRightDiverge(nextPoint)).isEqualTo(expectedIndex);
+        assertThat(currentPoint.moveStartingIndexDirection(nextPoint)).isEqualTo(expectedIndex);
     }
 
     private static Stream<Arguments> firstPointProvider() {
@@ -44,7 +44,7 @@ class PointTest {
     @ParameterizedTest
     @MethodSource("lastPointProvider")
     void lastPointDirectionTest(Point currentPoint, int expectedIndex) {
-        assertThat(currentPoint.isLeftDiverge()).isEqualTo(expectedIndex);
+        assertThat(currentPoint.moveEndIndexDirection()).isEqualTo(expectedIndex);
     }
 
     private static Stream<Arguments> lastPointProvider() {
